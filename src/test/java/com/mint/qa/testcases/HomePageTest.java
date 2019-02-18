@@ -51,7 +51,6 @@ public class HomePageTest extends TestBase {
 	@Test(priority=1)
 	public void verifyHomePageasSalesUser() throws InterruptedException {
 		homePage = loginPage.loginas("salesoperation");
-		homepage.
 		Assert.assertTrue(homePage.verify_Funnel_Section());
 		Assert.assertTrue(homePage.verify_Configurator_Section());
 		Assert.assertTrue(homePage.verify_Proposals_Section());
