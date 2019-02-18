@@ -7,8 +7,6 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
 
 import java.io.File;
 import java.io.IOException;
@@ -18,7 +16,7 @@ public class ChannelPageTest {
 	static WebDriver driver;
 	static JavascriptExecutor js;
 
-	@BeforeMethod
+//	@BeforeMethod
 	public void setUp() throws Exception {
 		System.setProperty("webdriver.chrome.driver", "/Users/naveenkhunteta/Downloads/chromedriver");
 		driver = new ChromeDriver();
@@ -26,7 +24,7 @@ public class ChannelPageTest {
 		driver.get("https://www.freecrm.com/index.html");
 	}
 
-	@Test
+	//@Test
 	public void freeCrmTitleTest() throws InterruptedException, IOException {
 		String title = driver.getTitle();
 		System.out.println("title is: " + title);

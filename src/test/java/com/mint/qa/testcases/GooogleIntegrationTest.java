@@ -1,11 +1,10 @@
 package com.mint.qa.testcases;
 
-import com.mint.qa.util.SheetsServiceUtil;
 import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.model.BatchGetValuesResponse;
 import com.google.api.services.sheets.v4.model.ValueRange;
+import com.mint.qa.util.SheetsServiceUtil;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
@@ -23,7 +22,7 @@ public class GooogleIntegrationTest {
         }
 
 
-   @Test
+ //  @Test
     public class googleIntegrationTest {
 
        List<String> ranges = Arrays.asList("E1", "E4");

@@ -5,17 +5,12 @@
 
 package com.mint.qa.testcases;
 
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.DataProvider;
-import org.testng.annotations.Test;
-
 import com.mint.qa.base.TestBase;
 import com.mint.qa.pages.ChannelPage;
 import com.mint.qa.pages.HomePage;
 import com.mint.qa.pages.LoginPage;
 import com.mint.qa.util.TestUtil;
+import org.testng.Assert;
 
 import java.net.MalformedURLException;
 
@@ -35,7 +30,7 @@ public class ProductPageTest extends TestBase{
 	}
 	
 	
-	@BeforeMethod
+//	@BeforeMethod
 	public void setUp() throws InterruptedException, MalformedURLException {
 		initialization();
 		testUtil = new TestUtil();
@@ -47,31 +42,31 @@ public class ProductPageTest extends TestBase{
 	//	contactsPage = homePage.clickOnContactsLink();
 	}
 	
-	@Test(priority=1)
+//	@Test(priority=1)
 	public void verifyContactsPageLabel(){
 		Assert.assertTrue(contactsPage.verifyContactsLabel(), "contacts label is missing on the page");
 	}
 	
-	@Test(priority=2)
+//	@Test(priority=2)
 	public void selectSingleContactsTest(){
 		contactsPage.selectContactsByName("test2 test2");
 	}
 	
-	@Test(priority=3)
+//	@Test(priority=3)
 	public void selectMultipleContactsTest(){
 		contactsPage.selectContactsByName("test2 test2");
 		contactsPage.selectContactsByName("ui uiii");
 
 	}
 	
-	@DataProvider
+//	@DataProvider
 	public Object[][] getCRMTestData(){
 		Object data[][] = TestUtil.getTestData(sheetName);
 		return data;
 	}
 	
 	
-	@Test(priority=4, dataProvider="getCRMTestData")
+//	@Test(priority=4, dataProvider="getCRMTestData")
 	public void validateCreateNewContact(String title, String firstName, String lastName, String company){
 //		homePage.clickOnNewContactLink();
 		//contactsPage.createNewContact("Mr.", "Tom", "Peter", "Google");
@@ -81,7 +76,7 @@ public class ProductPageTest extends TestBase{
 	
 	
 
-	@AfterMethod
+//	@AfterMethod
 	public void tearDown(){
 		driver.quit();
 	}
