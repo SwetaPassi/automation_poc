@@ -50,7 +50,7 @@ public class TestBase {
 	//	capability.setVersion("72");
 	//	driver = new RemoteWebDriver(new URL("http://172.30.229.76:4444/wd/hub"),capability);
 		if(browserName.equals("chrome")){
-			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+ "/src/main/resources/chromedriver_2.exe");
+			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+ "/src/main/resources/chromedriver__2.exe");
 			driver = new ChromeDriver();
 		}
 		else if(browserName.equals("FF")){
