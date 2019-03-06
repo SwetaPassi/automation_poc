@@ -2,7 +2,6 @@ package com.mint.qa.base;
 
 import com.mint.qa.util.TestUtil;
 import com.mint.qa.util.WebEventListener;
-import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -46,9 +45,9 @@ public class TestBase {
 	public static void initialization() throws MalformedURLException {
 		String browserName = prop.getProperty("browser");
 		capability = DesiredCapabilities.chrome();
-		capability.setBrowserName("chrome");
-		capability.setPlatform(Platform.WIN10);
-		capability.setVersion("72");
+	//	capability.setBrowserName("chrome");
+	//	capability.setPlatform(Platform.WIN10);
+	//	capability.setVersion("72");
 		driver = new RemoteWebDriver(new URL("http://172.30.229.76:4444/wd/hub"),capability);
 	/*	if(browserName.equals("chrome")){
 			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+ "/src/main/resources/chromedriver_2.exe");
