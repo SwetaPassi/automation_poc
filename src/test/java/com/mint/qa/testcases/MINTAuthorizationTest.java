@@ -7,27 +7,24 @@ import com.mint.qa.pages.LoginPage;
 import com.mint.qa.pages.StarHomePage;
 import com.mint.qa.util.TestUtil;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
 
-public class HomePageTest extends TestBase {
+public class MINTAuthorizationTest extends TestBase {
 	LoginPage loginPage;
 	HomePage homePage;
 	TestUtil testUtil;
 	ChannelPage contactsPage;
 	StarHomePage starHomePage;
 
-	public HomePageTest() {
+	public MINTAuthorizationTest() {
 		super();
 	}
-
 	//test cases should be separated -- independent with each other
 	//before each test case -- launch the browser and login
-	//@test -- execute test case
-	//after each test case -- close the browse
 	@BeforeMethod
 	public void setUp() throws InterruptedException, MalformedURLException {
 		initialization();
@@ -36,12 +33,11 @@ public class HomePageTest extends TestBase {
 		loginPage = new LoginPage();
 		starHomePage = new StarHomePage();
 		loginPage = starHomePage.StarHome();
-	//	homePage = loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
+		//	homePage = loginPage.login(prop.getProperty("username"), prop.getProperty("password"));
 	}
-	
-	
+
 	@Test(priority=1)
-	public void verifyHomePageTitleTest() throws InterruptedException {
+	public void verifyMINT_HomePageTitleTest() throws InterruptedException {
 		homePage = loginPage.loginas("salesoperation");
 		String homePageTitle = homePage.verifyHomePageTitle();
 		Assert.assertEquals(homePageTitle, "JoshSoftware-dev-979163 - Sign In","Home page title not matched");
@@ -49,25 +45,27 @@ public class HomePageTest extends TestBase {
 
 
 	@Test(priority=1)
-	public void verifyHomePageasSalesUser() throws InterruptedException {
+	public void verify_MINTSectionsAccess_asSalesUser() throws InterruptedException {
 		homePage = loginPage.loginas("salesoperation");
+		homePage.validatforPageLoad();
+		Assert.assertEquals(homePage.landing_Page().get("Proposal_Summary"),homePage.verifyHomePageURL());
 		Assert.assertTrue(homePage.verify_Funnel_Section());
 		Assert.assertTrue(homePage.verify_Configurator_Section());
 		Assert.assertTrue(homePage.verify_Proposals_Section());
-		Assert.assertTrue(homePage.verify_Admin_tasks_Section());
 		Assert.assertTrue(homePage.verify_Reports_Section());
 		Assert.assertTrue(homePage.verify_Delegation_Section());
 		Assert.assertTrue(homePage.verify_Downlkoad_Section_());
 		Assert.assertTrue(homePage.verify_Support());
-		Assert.assertTrue(homePage.verify_Logout_Section());
-		Assert.assertTrue(homePage.verifyNotificationModal());
 		Assert.assertTrue(homePage.verify_Notification_Section());
-
+		Assert.assertTrue(homePage.verify_Logout_Section());
 	}
 
+
 	@Test(priority=1)
-	public void verifyHomePageasSalesManager() throws InterruptedException {
+	public void verify_MINTSectionsAccess_asSalesManager() throws InterruptedException {
 		homePage = loginPage.loginas("sales_manager");
+		homePage.validatforPageLoad();
+		Assert.assertEquals(homePage.landing_Page().get("ProposalSummary"),homePage.verifyHomePageURL());
 		Assert.assertTrue(homePage.verify_Funnel_Section());
 		Assert.assertTrue(homePage.verify_Configurator_Section());
 		Assert.assertTrue(homePage.verify_Proposals_Section());
@@ -80,8 +78,10 @@ public class HomePageTest extends TestBase {
 	}
 
 	@Test(priority=1)
-	public void verifyHomePageasProductManager() throws InterruptedException {
+	public void verify_MINTSectionsAccess_asProductManager() throws InterruptedException {
 		homePage = loginPage.loginas("product_manager");
+		homePage.validatforPageLoad();
+		Assert.assertEquals(homePage.landing_Page().get("DPProposalApproval"),homePage.verifyHomePageURL());
 		Assert.assertTrue(homePage.verify_Funnel_Section());
 		Assert.assertTrue(homePage.verify_Configurator_Section());
 		Assert.assertTrue(homePage.verify_Proposals_Section());
@@ -95,11 +95,12 @@ public class HomePageTest extends TestBase {
 	}
 
 	@Test(priority=1)
-	public void verifyHomePageas_CT_executive() throws InterruptedException {
+	public void verify_MINTSectionsAccessas_CT_executive() throws InterruptedException {
 		homePage = loginPage.loginas("centralteam_executive");
+		homePage.validatforPageLoad();
+		Assert.assertEquals(homePage.landing_Page().get("OptimizerRule"),homePage.verifyHomePageURL());
 		Assert.assertTrue(homePage.verify_Funnel_Section());
 		Assert.assertTrue(homePage.verify_Configurator_Section());
-		Assert.assertTrue(homePage.verify_Proposals_Section());
 		Assert.assertTrue(homePage.verify_Admin_tasks_Section());
 		Assert.assertTrue(homePage.verify_Reports_Section());
 		Assert.assertTrue(homePage.verify_Downlkoad_Section_());
@@ -110,10 +111,11 @@ public class HomePageTest extends TestBase {
 	}
 
 	@Test(priority=1)
-	public void verifyHomePageassenior_management() throws InterruptedException {
+	public void verify_MINTSectionsAccessas_asSenior_management() throws InterruptedException {
 		homePage = loginPage.loginas("senior_management");
+		homePage.validatforPageLoad();
+		Assert.assertEquals(homePage.landing_Page().get("Configurator"),homePage.verifyHomePageURL());
 		Assert.assertTrue(homePage.verify_Configurator_Section());
-		Assert.assertTrue(homePage.verify_Proposals_Section());
 		Assert.assertTrue(homePage.verify_Reports_Section());
 		Assert.assertTrue(homePage.verify_Downlkoad_Section_());
 		Assert.assertTrue(homePage.verify_Support());
@@ -122,8 +124,10 @@ public class HomePageTest extends TestBase {
 	}
 
 	@Test(priority=1)
-	public void verifyHomePageastrainer() throws InterruptedException {
+	public void verify_MINTSectionsAccessas_trainer() throws InterruptedException {
 		homePage = loginPage.loginas("trainer");
+		homePage.validatforPageLoad();
+		Assert.assertEquals(homePage.landing_Page().get("Proposal_Summary"),homePage.verifyHomePageURL());
 		Assert.assertTrue(homePage.verify_Funnel_Section());
 		Assert.assertTrue(homePage.verify_Configurator_Section());
 		Assert.assertTrue(homePage.verify_Proposals_Section());
@@ -133,12 +137,13 @@ public class HomePageTest extends TestBase {
 		Assert.assertTrue(homePage.verify_Support());
 		Assert.assertTrue(homePage.verify_Logout_Section());
 		Assert.assertTrue(homePage.verify_Notification_Section());
-
 	}
 
 	@Test(priority=1)
-	public void verifyHomePageassuperadmin_username() throws InterruptedException {
+	public void verify_MINTSectionsAccessas_asSuperAdmine() throws InterruptedException {
 		homePage = loginPage.loginas("superadmin_username");
+		homePage.validatforPageLoad();
+		Assert.assertEquals(homePage.landing_Page().get("Channel"),homePage.verifyHomePageURL());
 		Assert.assertTrue(homePage.verify_Funnel_Section());
 		Assert.assertTrue(homePage.verify_Configurator_Section());
 		Assert.assertTrue(homePage.verify_Proposals_Section());
@@ -152,11 +157,12 @@ public class HomePageTest extends TestBase {
 	}
 
 	@Test(priority=1)
-	public void verifyHomePageasData_Product() throws InterruptedException {
+	public void verify_MINTSectionsAccessas_asData_Product() throws InterruptedException {
 		homePage = loginPage.loginas("data_product");
+		homePage.validatforPageLoad();
+		Assert.assertEquals(homePage.landing_Page().get("PRSProposalApproval"),homePage.verifyHomePageURL());
 		Assert.assertTrue(homePage.verify_Funnel_Section());
 		Assert.assertTrue(homePage.verify_Configurator_Section());
-		Assert.assertTrue(homePage.verify_Proposals_Section());
 		Assert.assertTrue(homePage.verify_Admin_tasks_Section());
 		Assert.assertTrue(homePage.verify_Reports_Section());
 		Assert.assertTrue(homePage.verify_Downlkoad_Section_());
@@ -167,8 +173,10 @@ public class HomePageTest extends TestBase {
 	}
 
 	@Test(priority=1)
-	public void verifyHomePageasSalesFrontLine() throws InterruptedException {
+	public void verify_MINTSectionsAccess_asSalesFrontLine() throws InterruptedException {
 		homePage = loginPage.loginas("sales_frontline");
+		homePage.validatforPageLoad();
+		Assert.assertEquals(homePage.landing_Page().get("ProposalSummary"),homePage.verifyHomePageURL());
 		Assert.assertTrue(homePage.verify_Funnel_Section());
 		Assert.assertTrue(homePage.verify_Configurator_Section());
 		Assert.assertTrue(homePage.verify_Proposals_Section());
@@ -179,15 +187,15 @@ public class HomePageTest extends TestBase {
 		Assert.assertTrue(homePage.verify_Notification_Section());
 
 	}
-	
-//	@Test(priority=3)
+
+	//	@Test(priority=3)
 	public void verifyContactsLinkTest(){
 		testUtil.switchToFrame();
-	//	contactsPage = homePage.clickOnContactsLink();
+		//	contactsPage = homePage.clickOnContactsLink();
 	}
-	
-	@AfterTest
+
+	@AfterMethod
 	public void tearDown(){
-		driver.quit();
+		homePage.closebrowser();
 	}
 }
